@@ -1,6 +1,6 @@
 const pg = require('pg');
 
-const pool = new pg.pool({
+const pool = new pg.Pool({
     user: 'testuser',
     host: 'localhost',
     database: 'node_authentication',
