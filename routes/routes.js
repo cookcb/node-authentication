@@ -12,7 +12,9 @@ module.exports = (passport) => {
     //LOGIN
 
     //HOMEPAGE
-
+    router.get('/', (req, res) => {
+        res.sendFile(indexPath);
+    })
     //isAuthenticated
 
     return router;
