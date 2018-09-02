@@ -1,4 +1,3 @@
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models/database.js');
 const bcrypt = require('bcrypt');
@@ -16,12 +15,13 @@ module.exports = (passport) => {
             }
             //Create user
             else{
+                console.log("Success");
                 bcrypt.hash(password, 10, (err, hash) => {
-                    db.query('INSERT INTO users(username, password) values($1, $2)', [username, hash], (err, res) => {
+                    db.query('INSERT INTO users(username, password) values($1, $2) RETURNING id, username', [username, hash], (err, res) => {
                         if(err){
                             console.log(err);
                         }
-                        res.send('SUCCES');
+                        return done(null, { id: res.rows[0].id, username: res.rows[0].username });
                     });
                 });
             }
@@ -54,7 +54,7 @@ module.exports = (passport) => {
     });
     
     passport.deserializeUser((id, done) => {
-        db.query('SELECT id, username FROM users WHERE username = $1', [id], (err, res) => {
+        db.query('SELECT id, username FROM users WHERE id = $1', [id], (err, res) => {
             if(err){
                 return done(err);
             }

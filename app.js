@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
-const routes = require('./routes/routes');
 const bodyParser = require('body-parser')
-const passport = require('config/passport');
+const passport = require('passport');
+require('./config/passport')(passport);
 
 const app = express()
+
+const routes = require('./routes/routes')(passport);
 
 const port = process.env.PORT || 8080;
 

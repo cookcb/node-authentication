@@ -1,19 +1,19 @@
-const db = require('../models/database.js');
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const passport = require('config/passport');
 
+module.exports = (passport) => {
+    //REGISTRATION
+    router.post('/register', passport.authenticate('local-register', {
+        successRedirect:'/',
+        failureRedirect: '/register',
+        failureFlash: true
+    }));
 
-//REGISTRATION
-router.post('/register', passport.authenticate('local-register', {
-    successRedirect:'/',
-    failureRedirect: '/register',
-    failureFlash: true
-}));
+    //LOGIN
 
-//LOGIN
+    //HOMEPAGE
 
-//HOMEPAGE
+    //isAuthenticated
 
-module.exports = routes;
+    return router;
+}
