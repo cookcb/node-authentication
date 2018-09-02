@@ -12,7 +12,6 @@ client.connect((err) => {
     console.log(err);
 });
 
-
 client.query('CREATE TABLE users(id SERIAL PRIMARY KEY, username TEXT, password TEXT)', (err, res) => {
     console.log(err, res)
     client.end()
