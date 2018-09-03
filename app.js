@@ -3,6 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const passport = require('passport');
 const flash = require('connect-flash');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 require('./config/passport')(passport);
 
@@ -19,6 +21,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({     
   extended: true
 })); 
+app.use(cookieParser());
+
+app.use(session({
+  secret: 'thisisatestscretyo',
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

@@ -2,7 +2,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models/database.js');
 const bcrypt = require('bcrypt');
 
-
 module.exports = (passport) => {
     passport.use('local-register', new LocalStrategy ((username, password, done) => {
         db.query('SELECT id, username, password FROM users WHERE username = $1', [username], (err, res) => {
@@ -15,7 +14,6 @@ module.exports = (passport) => {
             }
             //Create user
             else{
-                console.log("Success");
                 bcrypt.hash(password, 10, (err, hash) => {
                     db.query('INSERT INTO users(username, password) values($1, $2) RETURNING id, username', [username, hash], (err, res) => {
                         if(err){
@@ -27,7 +25,6 @@ module.exports = (passport) => {
             }
         });
     }));
-
 
     passport.use('local-login', new LocalStrategy((username, password, done) => {
         db.query('SELECT id, username, password FROM users WHERE username = $1', [username], (err, res) => {
