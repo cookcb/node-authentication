@@ -34,6 +34,10 @@ app.use(flash());
 
 app.use('/', routes)
 
+app.get('/', (req, res) => {
+  res.sendFile(indexPath);
+})
+
 app.listen(port, () => console.log('Example app listening on port ' + port));
 
 
