@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Router, Route, Link} from 'react-router-dom';
-import Register from 'Register'
+import Register from './Register'
 
 class App extends Component{
     constructor(){
@@ -8,9 +8,13 @@ class App extends Component{
     }
     render() {
         return (
-            <div>
-                TEST
-            </div>
+            <Router>
+                <div>TEST</div>
+                <div>
+                    <Link to="/register">Sign Up</Link>
+                    <Route path="/register" component={Register}></Route>
+                </div>
+            </Router>
         )
     }
 }

@@ -14,9 +14,9 @@ const routes = require('./routes/routes')(passport);
 
 const port = process.env.PORT || 8080;
 
-const indexPath = path.join(__dirname, '/index.html')
+const indexPath = path.join(__dirname, '/dist/index.html')
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/dist')));
 app.use(bodyParser.json());       
 app.use(bodyParser.urlencoded({     
   extended: true

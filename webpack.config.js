@@ -13,17 +13,17 @@ module.exports = {
             {
                 test: /.js$/,
                 loader: 'babel-loader',
-                include: path.join(__dirname, 'app'),
+                include: path.join(__dirname, 'src'),
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015', 'env', 'react']
+                    presets: ['env', 'react']
                 }
             }
         ]
     },
     plugins:[
         new HtmlWebpackPlugin({
-            template: "./public/index.html",
+            template: "./dist/index.html",
             filename: 'index.html',
             inject: 'body'
         })
