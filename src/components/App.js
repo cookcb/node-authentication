@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Register from './Register'
 
 class App extends Component{
@@ -9,7 +9,6 @@ class App extends Component{
     render() {
         return (
             <Router>
-                <div>TEST</div>
                 <div>
                     <Link to="/register">Sign Up</Link>
                     <Route path="/register" component={Register}></Route>

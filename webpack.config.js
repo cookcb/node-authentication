@@ -22,10 +22,12 @@ module.exports = {
         ]
     },
     plugins:[
-        new HtmlWebpackPlugin({
-            template: "./dist/index.html",
-            filename: 'index.html',
-            inject: 'body'
-        })
+        new HtmlWebpackPlugin(
+            {
+                template: "./public/index.html",
+                filename: 'index.html',
+                inject: 'body'
+            }
+        )
     ]
 }
