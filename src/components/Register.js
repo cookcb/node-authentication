@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+
 
 class Register extends Component{
     constructor(props){
@@ -21,7 +23,13 @@ class Register extends Component{
     }
 
     handleSubmit(event){
-        
+        axios.post('/register', {
+            username: this.state.username,
+            password: this.state.password
+        })
+        .then((response) => {
+            console.log(response);
+        })
     }
 
     render() {
