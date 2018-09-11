@@ -7,7 +7,8 @@ class Register extends Component{
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            responseMessage: "",
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,30 +24,39 @@ class Register extends Component{
     }
 
     handleSubmit(event){
+        event.preventDefault();
         axios.post('/register', {
             username: this.state.username,
             password: this.state.password
         })
         .then((response) => {
-            console.log(response);
+            this.setState({
+                responseMessage: response.data.message
+            });
         })
+        .catch(err => {
+            console.log(err.response);
+        });
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label for="username">Enter Username:</label>
-                    <input name="username" type="text" onChange={this.handleChange}/>
-                </div>
-                <div>
-                    <label for="password">Enter Password:</label>
-                    <input name="password" type="text" onChange={this.handleChange}/>
-                </div>
-                <div>
-                    <input type="submit" value="Register" />
-                </div>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label for="username">Enter Username:</label>
+                        <input name="username" type="text" onChange={this.handleChange}/>
+                    </div>
+                    <div>
+                        <label for="password">Enter Password:</label>
+                        <input name="password" type="text" onChange={this.handleChange}/>
+                    </div>
+                    <div>
+                        <input type="submit" value="Register" />
+                    </div>
+                </form>
+                <span>{this.state.responseMessage}</span>
+            </div>
         )
     }
 }

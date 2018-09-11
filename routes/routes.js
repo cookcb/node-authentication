@@ -3,11 +3,16 @@ const router = express.Router();
 
 module.exports = (passport) => {
     //REGISTRATION
-    router.post('/register', passport.authenticate('local-register', {
-        successRedirect:'/login.html',
-        failureRedirect: '/register.html',
-        failureFlash: true
-    }));
+    router.post('/register', (req, res, next) => {
+        passport.authenticate('local-register', (err, user, info) => {
+            if(err){
+                return next(err);
+            }
+            if(!user){
+                return res.send(info);
+            }
+        })(req, res, next);
+    });
 
     //LOGIN
 
