@@ -10,7 +10,6 @@ module.exports = (passport) => {
             }
             //If user already exists
             if(res.rows.length > 0){
-                console.log("We made it here 2")
                 return done(null, false, { message: "A user with that username already exists" });
             }
             //Create user
@@ -20,7 +19,6 @@ module.exports = (passport) => {
                         if(err){
                             console.log(err);
                         }
-                        console.log("We made it here")
                         return done(null, { id: res.rows[0].id, username: res.rows[0].username });
                     });
                 });

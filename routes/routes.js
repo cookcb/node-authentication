@@ -11,11 +11,20 @@ module.exports = (passport) => {
             if(!user){
                 return res.send(info);
             }
+            req.logIn(user, loginErr => {
+                if(loginErr){
+                    return res.send({ success: false, message: "Login failed" });
+                }   
+                return res.send({ success: true, message: "Login Successful" });
+            });
         })(req, res, next);
     });
 
     //LOGIN
 
+    //LOGOUT
+
+    
     //HOMEPAGE
     /*router.get('/', (req, res) => {
         res.sendFile(indexPath);

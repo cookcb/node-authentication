@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
+import { Redirect } from 'react-router'
 
 class Register extends Component{
     constructor(props){
@@ -9,6 +9,7 @@ class Register extends Component{
             username: "",
             password: "",
             responseMessage: "",
+            redirect: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +32,8 @@ class Register extends Component{
         })
         .then((response) => {
             this.setState({
-                responseMessage: response.data.message
+                responseMessage: response.data.message,
+                redirect: true
             });
         })
         .catch(err => {
@@ -40,24 +42,29 @@ class Register extends Component{
     }
 
     render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label for="username">Enter Username:</label>
-                        <input name="username" type="text" onChange={this.handleChange}/>
-                    </div>
-                    <div>
-                        <label for="password">Enter Password:</label>
-                        <input name="password" type="text" onChange={this.handleChange}/>
-                    </div>
-                    <div>
-                        <input type="submit" value="Register" />
-                    </div>
-                </form>
-                <span>{this.state.responseMessage}</span>
-            </div>
-        )
+        if(this.state.redirect){
+            console.log("TEST");
+            return <Redirect to='/Home' />
+        }else{
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <div>
+                            <label for="username">Enter Username:</label>
+                            <input name="username" type="text" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <label for="password">Enter Password:</label>
+                            <input name="password" type="text" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Register" />
+                        </div>
+                    </form>
+                    <span>{this.state.responseMessage}</span>
+                </div>
+            )
+        }
     }
 }
 
