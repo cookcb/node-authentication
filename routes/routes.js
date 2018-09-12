@@ -15,7 +15,8 @@ module.exports = (passport) => {
                 if(loginErr){
                     return res.send({ success: false, message: "Login failed" });
                 }   
-                return res.send({ success: true, message: "Login Successful" });
+                console.log(res);
+                return res.send({ success: true, username: res.body.username, message: "Login Successful" });
             });
         })(req, res, next);
     });

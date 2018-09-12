@@ -6,8 +6,9 @@ class Home extends Component{
     }
 
     render(){
+        console.log("Well this worked");
         return(
-            <div>Welcome to your home page!</div>
+            <div>This is a test {this.props.location.state.referrer}</div>
         )
     }
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router'
+import { Route, Redirect } from 'react-router';
 
 class Register extends Component{
     constructor(props){
@@ -9,6 +9,7 @@ class Register extends Component{
             username: "",
             password: "",
             responseMessage: "",
+            profile: "",
             redirect: false
         }
 
@@ -31,9 +32,11 @@ class Register extends Component{
             password: this.state.password
         })
         .then((response) => {
+            console.log(response);
             this.setState({
                 responseMessage: response.data.message,
-                redirect: true
+                redirect: true,
+                profile: response.data.username
             });
         })
         .catch(err => {
@@ -43,8 +46,15 @@ class Register extends Component{
 
     render() {
         if(this.state.redirect){
-            console.log("TEST");
-            return <Redirect to='/Home' />
+            console.log("At redirect conditional");
+            return (
+                <div>
+                    <Redirect to={{
+                        pathname: '/home',
+                        state: { referrer: this.state.profile}
+                    }} />
+                </div>
+            )
         }else{
             return (
                 <div>
