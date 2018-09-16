@@ -8,7 +8,7 @@ class Home extends Component{
     render(){
         console.log("Well this worked");
         return(
-            <div>This is a test {this.props.location.state.referrer}</div>
+            <div>Welcome {this.props.location.state.referrer}!</div>
         )
     }
 }
