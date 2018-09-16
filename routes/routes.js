@@ -11,12 +11,11 @@ module.exports = (passport) => {
             if(!user){
                 return res.send(info);
             }
-            req.logIn(user, loginErr => {
+            req.logIn(user, (loginErr) => {
                 if(loginErr){
                     return res.send({ success: false, message: "Login failed" });
                 }   
-                console.log(res);
-                return res.send({ success: true, username: res.body.username, message: "Login Successful" });
+                return res.send({ success: true, username: user.username, message: "Login Successful" });
             });
         })(req, res, next);
     });

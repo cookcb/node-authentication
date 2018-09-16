@@ -32,7 +32,7 @@ class Register extends Component{
             password: this.state.password
         })
         .then((response) => {
-            console.log(response);
+            console.log(response.data);
             this.setState({
                 responseMessage: response.data.message,
                 redirect: true,
@@ -46,7 +46,6 @@ class Register extends Component{
 
     render() {
         if(this.state.redirect){
-            console.log("At redirect conditional");
             return (
                 <div>
                     <Redirect to={{
