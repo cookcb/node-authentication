@@ -11,13 +11,13 @@ module.exports = (passport) => {
             //If user already exists
             if(res.rows.length > 0){
                 return done(null, false, { message: "A user with that username already exists" });
-            }
+            } 
             //Create user
             else{
                 bcrypt.hash(password, 10, (err, hash) => {
                     db.query('INSERT INTO users(username, password) values($1, $2) RETURNING id, username', [username, hash], (err, res) => {
                         if(err){
-                            console.log(err);
+                            done(null, false, { message: "Could not create user" });
                         }
                         return done(null, { id: res.rows[0].id, username: res.rows[0].username });
                     });

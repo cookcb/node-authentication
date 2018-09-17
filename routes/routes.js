@@ -21,14 +21,30 @@ module.exports = (passport) => {
     });
 
     //LOGIN
+    router.post('/login', (req, res, next) => {
+        passport.authenticate('local-login', (err, user, info) => {
+            if(err){
+                return next(err);
+            }
+            if(!user){
+                return res.send(info);
+            }
+            req.logIn(user, (loginErr) => {
+                if(loginErr){
+                    return res.send({ success: false, message: "Login failed" });
+                }
+                return res.send({ success: true, username: user.username, message: "Login Succesful"});
+            })
+        })
+    })
 
     //LOGOUT
 
     
     //HOMEPAGE
-    /*router.get('/', (req, res) => {
+    router.get('/', (req, res) => {
         res.sendFile(indexPath);
-    })*/
+    });
     //isAuthenticated
 
     return router;
