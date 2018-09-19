@@ -18,31 +18,69 @@ class Login extends Component{
     }
 
     handleChange(event){
-
+        let name = event.target.name;
+        let value = event.target.value;
+        this.setState({
+            [name]: value
+        });
     }
 
     handleSubmit(event){
-
+        event.preventDefault();
+        axios.post('./login', {
+            username: this.state.username,
+            password: this.state.password
+        })
+        .then(response =>  {
+            let username = response.data.username;
+            let redirect = true;
+            let message = response.data.message;
+            if(typeof username === 'undefined'){
+                redirect = false;
+            }
+            this.setState({
+                responseMessage: message,
+                redirect: redirect,
+                profile: username
+            })
+        })
+        .catch(err => {
+            console.log(err.response);
+        });
     }
 
 
     render(){
-        return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label for="username">Enter Email:</label>
-                        <input name="username" type="text" />
-                    </div>
-                    <div>
-                        <label for="password">Enter Password:</label>
-                        <input name="password" type="text" />
-                    </div>
-                    <div>
-                        <input type="submit" value="Log In" />
-                    </div>
-                </form>
-            </div>
-        )
+        if(this.state.redirect){
+            return (
+                <div>
+                    <Redirect to={{
+                        pathname: '/home',
+                        state: { referrer: this.state.profile}
+                    }} />
+                </div>
+            )
+        }else{
+            return(
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <div>
+                            <label for="username">Enter Email:</label>
+                            <input name="username" type="text" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <label for="password">Enter Password:</label>
+                            <input name="password" type="text" onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <input type="submit" value="Log In" />
+                        </div>
+                    </form>
+                    <span>{this.state.responseMessage}</span>
+                </div>
+            )
+        }
     }
 }
+
+export default Login;

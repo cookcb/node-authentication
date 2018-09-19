@@ -35,7 +35,7 @@ module.exports = (passport) => {
                 }
                 return res.send({ success: true, username: user.username, message: "Login Succesful"});
             })
-        })
+        })(req, res, next);
     })
 
     //LOGOUT

@@ -26,15 +26,15 @@ module.exports = (passport) => {
         });
     }));
 
-    passport.use('local-login', new LocalStrategy((username, password, done) => {
-        db.query('SELECT id, username, password FROM users WHERE username = $1', [username], (err, res) => {
+    passport.use('local-login', new LocalStrategy ((username, password, done) => {
+        db.query('SELECT id, username, password FROM users WHERE username = $1', [username], (err, dbRes) => {
             if(err){
                 return done(err);
             }
-            if(res.rows.length > 0){
-                bcrypt.compare(password, res.rows[0].password, (err, res) => {
-                    if(res){
-                        return done(null, { id: res.id, username: res.rows[0].username });
+            if(dbRes.rows.length > 0){
+                bcrypt.compare(password, dbRes.rows[0].password, (err, bcRes) => {
+                    if(bcRes){
+                        return done(null, { id: dbRes.rows[0].id, username: dbRes.rows[0].username });
                     }else{
                         return done(null, false, { message: "Incorrect Password" });
                     }
