@@ -3,6 +3,7 @@ const router = express.Router();
 
 module.exports = (passport) => {
     //REGISTRATION
+    
     router.post('/register', (req, res, next) => {
         passport.authenticate('local-register', (err, user, info) => {
             if(err){
@@ -39,12 +40,16 @@ module.exports = (passport) => {
     })
 
     //LOGOUT
-
+    router.post('/logout', (req, res) => {
+       req.logOut();
+       res.send({ message: "Logout Succesful"})
+    })
     
     //HOMEPAGE
     router.get('/', (req, res) => {
         res.sendFile(indexPath);
     });
+
     //isAuthenticated
 
     return router;
