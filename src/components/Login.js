@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
+import styles from '../styles.css'
 
 class Login extends Component{
     constructor(props){
@@ -62,18 +63,18 @@ class Login extends Component{
             )
         }else{
             return(
-                <div>
+                <div className={styles.formStyle}>
                     <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label for="username">Enter Email:</label>
+                        <div className={styles.inputContainer}>
+                            <label for="username">USERNAME</label>
                             <input name="username" type="text" onChange={this.handleChange}/>
                         </div>
-                        <div>
-                            <label for="password">Enter Password:</label>
+                        <div className={styles.inputContainer}>
+                            <label for="password">PASSWORD</label>
                             <input name="password" type="text" onChange={this.handleChange}/>
                         </div>
-                        <div>
-                            <input type="submit" value="Log In" />
+                        <div className={styles.inputContainer}>
+                            <input type="submit" value="LOG IN" />
                         </div>
                     </form>
                     <span>{this.state.responseMessage}</span>

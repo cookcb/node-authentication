@@ -24,7 +24,6 @@ class Home extends Component{
     }
 
     render(){
-        console.log("Well this worked");
         if(this.state.redirect){
             return (
                 <div>
