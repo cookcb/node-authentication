@@ -62,19 +62,20 @@ class Login extends Component{
                 </div>
             )
         }else{
+            console.log(styles.formStyle);
             return(
                 <div className={styles.formStyle}>
                     <form onSubmit={this.handleSubmit}>
                         <div className={styles.inputContainer}>
-                            <label for="username">USERNAME</label>
+                            <label for="username">Username</label>
                             <input name="username" type="text" onChange={this.handleChange}/>
                         </div>
                         <div className={styles.inputContainer}>
-                            <label for="password">PASSWORD</label>
+                            <label for="password">Password</label>
                             <input name="password" type="text" onChange={this.handleChange}/>
                         </div>
-                        <div className={styles.inputContainer}>
-                            <input type="submit" value="LOG IN" />
+                        <div>
+                            <button type="submit" className={styles.button}>Log In</button>
                         </div>
                     </form>
                     <span>{this.state.responseMessage}</span>

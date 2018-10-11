@@ -1,8 +1,29 @@
-.formStyle{
-    border-style: 'solid';
-    width: '300px';
+body{
+    font-family: sans-serif;
 }
 
-.inputContainer{
-    padding-bottom: '30px';
+.formStyle {
+    border-style: solid;
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.inputContainer {
+    padding-bottom: 20px;
+}
+
+.button{
+    background-color: #87d3ff;
+    color: #ffffff;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+    position: relative;
+    left: 150px;
 }
