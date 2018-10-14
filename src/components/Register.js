@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
+import styles from '../styles.css'
 
 class Register extends Component{
     constructor(props){
@@ -8,6 +9,7 @@ class Register extends Component{
         this.state = {
             username: "",
             password: "",
+            passwordCheck: "",
             responseMessage: "",
             profile: "",
             redirect: false
@@ -27,21 +29,36 @@ class Register extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        axios.post('/register', {
-            username: this.state.username,
-            password: this.state.password
-        })
-        .then((response) => {
-            console.log(response.data);
+        if(this.state.username === ""){
             this.setState({
-                responseMessage: response.data.message,
-                redirect: true,
-                profile: response.data.username
+                responseMessage: "Missing Username"
             });
-        })
-        .catch(err => {
-            console.log(err.response);
-        });
+        }else if(this.state.password == ""){
+            this.setState({
+                responseMessage: "Missing Password"
+            });
+        }
+        else if(this.state.passwordCheck !== this.state.password){
+            this.setState({
+                responseMessage: "Passwords do not match"
+            });
+        }else{
+            axios.post('/register', {
+                username: this.state.username,
+                password: this.state.password
+            })
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    responseMessage: response.data.message,
+                    redirect: true,
+                    profile: response.data.username
+                });
+            })
+            .catch(err => {
+                console.log(err.response);
+            });
+        }
     }
 
     render() {
@@ -56,18 +73,20 @@ class Register extends Component{
             )
         }else{
             return (
-                <div>
+                <div className={styles.formStyleRegister}>
+                    <span className={styles.header}>Register</span>
                     <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label for="username">Enter Username:</label>
-                            <input name="username" type="text" onChange={this.handleChange}/>
+                        <div className={styles.inputContainer}>
+                            <input name="username" type="text" placeHolder="Enter Username" onChange={this.handleChange}/>
                         </div>
-                        <div>
-                            <label for="password">Enter Password:</label>
-                            <input name="password" type="text" onChange={this.handleChange}/>
+                        <div className={styles.inputContainer}>
+                            <input name="password" type="text" placeHolder="Enter Password" onChange={this.handleChange}/>
                         </div>
-                        <div>
-                            <input type="submit" value="Register" />
+                        <div className={styles.inputContainer}>
+                            <input name="passwordCheck" type="text" placeHolder="Enter Password Again" onChange={this.handleChange}/>
+                        </div>
+                        <div className={styles.buttonContainer}>
+                            <button type="submit" className={styles.button}>Sign Up</button>
                         </div>
                     </form>
                     <span>{this.state.responseMessage}</span>

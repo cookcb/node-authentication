@@ -40,7 +40,7 @@ class App extends Component{
                     </div>
                 </Router>
                 <div>
-                    <Login />
+
                 </div>
             </div>
         )

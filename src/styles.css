@@ -2,9 +2,23 @@ body{
     font-family: sans-serif;
 }
 
-.formStyle {
+.formStyleLogin {
     width: 350px;
     height: 200px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #ffffff;;
+    background-color: #2d5686;
+    text-align: center;
+}
+
+.formStyleRegister {
+    width: 350px;
+    height: 250px;
     position: absolute;
     margin: auto;
     top: 0;

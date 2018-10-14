@@ -62,7 +62,6 @@ class Login extends Component{
                 </div>
             )
         }else{
-            console.log(styles.formStyle);
             return(
                 <div className={styles.formStyle}>
                     <span className={styles.header}>Sign In</span>
