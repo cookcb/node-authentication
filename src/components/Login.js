@@ -65,16 +65,15 @@ class Login extends Component{
             console.log(styles.formStyle);
             return(
                 <div className={styles.formStyle}>
+                    <span className={styles.header}>Sign In</span>
                     <form onSubmit={this.handleSubmit}>
                         <div className={styles.inputContainer}>
-                            <label for="username">Username</label>
-                            <input name="username" type="text" onChange={this.handleChange}/>
+                            <input name="username" type="text" placeholder="Username" onChange={this.handleChange}/>
                         </div>
                         <div className={styles.inputContainer}>
-                            <label for="password">Password</label>
-                            <input name="password" type="text" onChange={this.handleChange}/>
+                            <input name="password" type="text" placeholder="Password" onChange={this.handleChange}/>
                         </div>
-                        <div>
+                        <div className={styles.buttonContainer}>
                             <button type="submit" className={styles.button}>Log In</button>
                         </div>
                     </form>

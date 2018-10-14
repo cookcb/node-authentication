@@ -23,21 +23,26 @@ class App extends Component{
     }
     render() {
         return (
-            <Router>
+            <div>
+                <Router>
+                    <div>
+                        <ul style={navStyle}>
+                            <li style={tabStyle}>
+                                <Link to="/register">Sign Up</Link>
+                            </li>
+                            <li style={tabStyle}>
+                                <Link to="/login">Login</Link>
+                            </li>
+                        </ul>
+                        <Route path="/login" component={Login}></Route>
+                        <Route path="/register" component={Register}></Route>
+                        <Route path='/home' component={Home}></Route>
+                    </div>
+                </Router>
                 <div>
-                    <ul style={navStyle}>
-                        <li style={tabStyle}>
-                            <Link to="/register">Sign Up</Link>
-                        </li>
-                        <li style={tabStyle}>
-                            <Link to="/login">Login</Link>
-                        </li>
-                    </ul>
-                    <Route path="/login" component={Login}></Route>
-                    <Route path="/register" component={Register}></Route>
-                    <Route path='/home' component={Home}></Route>
+                    <Login />
                 </div>
-            </Router>
+            </div>
         )
     }
 }
