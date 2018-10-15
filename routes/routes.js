@@ -28,7 +28,7 @@ module.exports = (passport) => {
                 return next(err);
             }
             if(!user){
-                return res.send(info);
+                return res.send(info); 
             }
             req.logIn(user, (loginErr) => {
                 if(loginErr){
@@ -44,11 +44,6 @@ module.exports = (passport) => {
        req.logOut();
        res.send({ message: "Logout Succesful"})
     })
-    
-    //HOMEPAGE
-    router.get('/', (req, res) => {
-        res.sendFile(indexPath);
-    });
 
     //isAuthenticated
 

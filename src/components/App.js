@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import Register from './Register'
 import Home from './Home'
 import Login from './Login'
@@ -21,10 +21,10 @@ class App extends Component{
     constructor(){
         super();
     }
+
     render() {
         return (
             <div>
-                <Router>
                     <div>
                         <ul style={navStyle}>
                             <li style={tabStyle}>
@@ -34,14 +34,12 @@ class App extends Component{
                                 <Link to="/login">Login</Link>
                             </li>
                         </ul>
-                        <Route path="/login" component={Login}></Route>
-                        <Route path="/register" component={Register}></Route>
-                        <Route path='/home' component={Home}></Route>
+                        <Switch>
+                            <Route path="/login" component={Login}></Route>
+                            <Route path="/register" component={Register}></Route>
+                            <Route path='/home' component={Home}></Route>
+                        </Switch>
                     </div>
-                </Router>
-                <div>
-
-                </div>
             </div>
         )
     }

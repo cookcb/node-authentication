@@ -63,7 +63,7 @@ class Login extends Component{
             )
         }else{
             return(
-                <div className={styles.formStyle}>
+                <div className={styles.formStyleLogin}>
                     <span className={styles.header}>Sign In</span>
                     <form onSubmit={this.handleSubmit}>
                         <div className={styles.inputContainer}>
