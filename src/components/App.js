@@ -35,9 +35,10 @@ class App extends Component{
                             </li>
                         </ul>
                         <Switch>
-                            <Route path="/login" component={Login}></Route>
-                            <Route path="/register" component={Register}></Route>
-                            <Route path='/home' component={Home}></Route>
+                            <Route exact path="/" component = {Login}></Route>
+                            <Route exact path="/login" component={Login}></Route>
+                            <Route exact path="/register" component={Register}></Route>
+                            <Route exact path='/home' component={Home}></Route>
                         </Switch>
                     </div>
             </div>
