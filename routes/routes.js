@@ -3,14 +3,13 @@ const router = express.Router();
 
 module.exports = (passport) => {
     //REGISTRATION
-    
     router.post('/register', (req, res, next) => {
         passport.authenticate('local-register', (err, user, info) => {
             if(err){
                 return next(err);
             }
             if(!user){
-                return res.send(info);
+                return res.send({ success: false, message: info.message});
             }
             req.logIn(user, (loginErr) => {
                 if(loginErr){

@@ -30,8 +30,25 @@ body{
     text-align: center;
 }
 
+.homeContainer{
+    width: 500px;
+    height: 250px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #99ccff;
+    text-align: center;
+}
+
 .header{
     font-size: 30px;
+}
+
+.welcomeHeader{
+    font-size: 50px;
 }
 
 .inputContainer {
@@ -50,6 +67,18 @@ body{
 .button{
     background-color: #87d3ff;
     color: #ffffff;
+    padding: 7px 35px;
+    font-size: 15px;
+}
+
+.logoutButton{
+    background-color: #2d5686;
+    color: #ffffff;
     padding: 10px 15px;
     font-size: 15px;
+}
+
+.link{
+    text-decoration: none;
+    color: #87d3ff;
 }

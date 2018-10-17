@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
-
+import styles from '../styles.css'
 
 class Home extends Component{
     constructor(props){
@@ -28,15 +28,15 @@ class Home extends Component{
             return (
                 <div>
                     <Redirect to={{
-                        pathname: '/home'
+                        pathname: '/login'
                     }} />
                 </div>
             )
         }else{
             return(
-                <div>
-                    <div>Welcome: {this.props.location.state.referrer}!</div>
-                    <button onClick={this.handleLogOut.bind(this)}>Log Out</button>
+                <div className={styles.homeContainer}>
+                    <div className={styles.welcomeHeader}>Welcome: {this.props.location.state.referrer}!</div>
+                    <button className={styles.logoutButton} onClick={this.handleLogOut.bind(this)}>Log Out</button>
                 </div>
             )
         }

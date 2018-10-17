@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Link } from 'react-router-dom';
 import styles from '../styles.css'
 
 class Login extends Component{
@@ -63,20 +63,25 @@ class Login extends Component{
             )
         }else{
             return(
-                <div className={styles.formStyleLogin}>
-                    <span className={styles.header}>Sign In</span>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className={styles.inputContainer}>
-                            <input name="username" type="text" placeholder="Username" onChange={this.handleChange}/>
+                <div>
+                    <div className={styles.formStyleLogin}>
+                        <span className={styles.header}>Sign In</span>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className={styles.inputContainer}>
+                                <input name="username" type="text" placeholder="Username" onChange={this.handleChange}/>
+                            </div>
+                            <div className={styles.inputContainer}>
+                                <input name="password" type="text" placeholder="Password" onChange={this.handleChange}/>
+                            </div>
+                            <div className={styles.buttonContainer}>
+                                <button type="submit" className={styles.button}>Log In</button>
+                            </div>
+                        </form>
+                        <span>{this.state.responseMessage}</span>
+                        <div>
+                            Need an account? <Link className={styles.link} to="/register">Sign Up</Link>
                         </div>
-                        <div className={styles.inputContainer}>
-                            <input name="password" type="text" placeholder="Password" onChange={this.handleChange}/>
-                        </div>
-                        <div className={styles.buttonContainer}>
-                            <button type="submit" className={styles.button}>Log In</button>
-                        </div>
-                    </form>
-                    <span>{this.state.responseMessage}</span>
+                    </div>
                 </div>
             )
         }

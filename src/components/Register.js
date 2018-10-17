@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Link } from 'react-router-dom';
 import styles from '../styles.css'
 
 class Register extends Component{
@@ -48,12 +48,17 @@ class Register extends Component{
                 password: this.state.password
             })
             .then((response) => {
-                console.log(response.data);
-                this.setState({
-                    responseMessage: response.data.message,
-                    redirect: true,
-                    profile: response.data.username
-                });
+                if(response.data.success === true){
+                    this.setState({
+                        responseMessage: response.data.message,
+                        redirect: true,
+                        profile: response.data.username
+                    });
+                }else{
+                    this.setState({
+                        responseMessage: response.data.message,
+                    });
+                }
             })
             .catch(err => {
                 console.log(err.response);
@@ -90,6 +95,9 @@ class Register extends Component{
                         </div>
                     </form>
                     <span>{this.state.responseMessage}</span>
+                    <div>
+                        Have an account? <Link className={styles.link} to="/login">Log In</Link>
+                    </div>
                 </div>
             )
         }
