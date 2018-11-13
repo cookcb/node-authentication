@@ -1,6 +1,15 @@
 # Node Authentication
 Basic username and password authentication using Node, Passport.js PostgreSQL and react
 
+#Sign In
+![Alt text](/screenshots/signin-page.jpg?raw=true "Sign Up")
+
+#Registration
+![Alt text](/screenshots/registration-page.jpg?raw=true "Registration")
+
+#Home Page
+![Alt text](/screenshots/home-page.jpg?raw=true "Home Page")
+
 ### Tools / Frameworks used
 - Node
 - Express
